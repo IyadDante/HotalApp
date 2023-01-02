@@ -1,0 +1,63 @@
+﻿@page 
+@inject Microsoft.AspNetCore.Components.NavigationManager NavPara
+@model HotelApp.Web.Pages.RoomSearchModel
+@{
+    ViewData["Title"] = "Room Search";
+}
+
+<h1>Room Search</h1>
+
+<form method="post">
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <label class="from-label" asp-for="@Model.StartDate"></label>
+                <input name="startDate"  class="from-control" asp-for="@Model.StartDate" />
+            </div>
+            <div class="col-sm">
+                <label class="from-label" asp-for="@Model.EndDate"></label>
+                <input name="endDate" class="from-control" asp-for="@Model.EndDate" />
+            </div>
+            <div class="col-sm">
+                <button type="submit" class="btn btn-primary" Size="Size.Large">Search</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+<br />
+<div>
+    <h2>Available Rooms List</h2>
+        @if (Model.AvailableRoomTypes?.Count > 0)
+        {
+            <table class ="table">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach( var room in Model.AvailableRoomTypes)
+                    { 
+                        <tr>
+                            <td><strong>@room.Title</strong> <br /> @room.Description</td>
+                            <td>@room.Price</td>
+                            <td> <a asp-page="/BookRoom" 
+                                    asp-route-proomtypeid="@room.Id" 
+                                    asp-route-pstartdate="@Model.StartDate.ToString("yyyy-MM-dd")" 
+                                    asp-route-penddate="@Model.EndDate.ToString("yyyy-MM-dd")">Book Now</a>
+                           </td>
+                        </tr>
+                    } 
+                </tbody>
+            </table>
+        } 
+        else 
+        {
+            <p><em>Select date to view the available rooms</em></p>
+            
+        }
+</div>

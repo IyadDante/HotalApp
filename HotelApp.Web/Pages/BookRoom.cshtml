@@ -1,0 +1,46 @@
+﻿@page
+@model HotelApp.Web.Pages.BookRoomModel
+@{
+    ViewData["Title"] = "Room Search";
+}
+<h1>Room Booking</h1>
+<h2>@Model.RoomType.Title</h2>
+<p> @Model.RoomType.Description </p>
+<br />
+
+<form method="post">
+    <dev class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <label class="from-label" Readonly=true>Start Date</label>
+                <input type="date" class="from-control" asp-for="@Model.pStartDate" />
+            </div>
+            <div class="col">
+                <label class="from-label" Readonly=true>End Date</label>
+                <input type="date" class="from-control" asp-for="@Model.pEndDate" />
+            </div>
+            <div class="col"></div>
+        </div>
+        <br />
+        <dev class="row g-3 needs-validation" novalidate>
+            <label class="from-label">First Name</label>
+            <input type="text" class="from-control" asp-for="@Model.FirstName" required />
+        </dev>
+        <br/>  
+        <dev class="row g-3 needs-validation" novalidate>
+            <label class="from-label">Last Name</label>
+            <input type="text" class="from-control" asp-for="@Model.LastName"  required />
+        </dev>
+        <dev class="container-fluid">
+            <dev class="row">
+                <button type="submit" class="btn btn-primary btn-sm">Reigister User</button>
+            </dev>
+        </dev>
+    </dev>
+</form>
+
+
+
+
+

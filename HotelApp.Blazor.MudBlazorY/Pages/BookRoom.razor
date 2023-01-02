@@ -1,0 +1,26 @@
+﻿@page "/BookRoom/"
+
+<p>
+    aRoomId = @roomId, StartDate = startDate, EndDate = aEndDate
+</p>
+
+
+@code
+{
+    [Parameter]
+    public int? roomId { get; set; } 
+    [Parameter]
+    public DateTime? StartDate { get; set; }
+    [Parameter]
+    public DateTime? EndDate { get; set; }
+
+    //protected override void OnInitialized()
+    //{
+    //    roomId = @aRoomId;
+    //}
+}
+
+
+
+
+
