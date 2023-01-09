@@ -1,0 +1,17 @@
+﻿@inject IDialogService DialogService
+
+<MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="OnButtonClicked">Delete</MudButton>
+
+<MudChip>@state </MudChip>
+
+
+@code {
+    public string state { get; set; }
+
+    private async void OnButtonClicked()
+    {
+        bool? result = await DialogService.ShowMessageBox("Warning", "Deleting can not be undone!", yesText: "Delete!", cancelText: "Cancel");
+        state = result == null ? "Canceled" : "Deleted!";
+        StateHasChanged();
+    }
+}

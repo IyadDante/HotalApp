@@ -1,0 +1,43 @@
+﻿@page "/TestUI"
+
+@using System.ComponentModel.DataAnnotations
+@using HotalAppLibrary.Models;
+
+
+<EditForm Model="@newGuest" OnValidSubmit="OnValidSubmit">
+
+    <DataAnnotationsValidator />
+       <MudStack Spacing="4">
+            <MudStack Row="true">
+            <MudTextField T="string" Label="First Name" @bind-Value="newGuest.FirstName" For="@(() => newGuest.FirstName)" Margin="Margin.Dense" />
+            <MudTextField T="string" Label="Last Name" @bind-Value="newGuest.LastName" For="@(() => newGuest.LastName)" Margin="Margin.Dense" />
+            </MudStack>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Margin="Margin.Dense"> Validation </MudButton>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Margin="Margin.Dense" Class="ml-auto">Register</MudButton>
+       </MudStack>
+        
+</EditForm>
+
+@code 
+{
+    bool success;
+    RequiredInputs newGuest = new RequiredInputs();
+   
+    public class RequiredInputs
+    {
+        [Required]
+        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
+        public string LastName { get; set; }
+    }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        success = true;
+        StateHasChanged();
+    }
+
+}

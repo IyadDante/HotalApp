@@ -7,11 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Models\ReportOptions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HotalAppLibrary\HotalAppLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="wwwroot\reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BoldReports.AspNet.Core" Version="4.2.66" />
+    <PackageReference Include="BoldReports.Web" Version="4.2.66" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.12" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
 </Project>
