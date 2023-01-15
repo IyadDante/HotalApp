@@ -135,6 +135,7 @@ namespace HotelAppLibrary.Tests
 
         }
 
+<<<<<<< HEAD
         //[Fact]
         //public void Test()
         //{
@@ -172,6 +173,45 @@ namespace HotelAppLibrary.Tests
         //{
         //    string GetValue();
         //}
+=======
+        [Fact]
+        public void Test()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                // Arrange - configure the mock
+                mock.Mock<IDependency>().Setup(x => x.GetValue()).Returns("expected value");
+                var sut = mock.Create<SystemUnderTest>();
+
+                // Act
+                var actual = sut.DoWork();
+
+                // Assert - assert on the mock
+                mock.Mock<IDependency>().Verify(x => x.GetValue());
+                Assert.Equal("expected value", actual);
+            }
+        }
+
+        public class SystemUnderTest
+        {
+            private readonly IDependency dependency;
+
+            public SystemUnderTest(IDependency strings)
+            {
+                this.dependency = strings;
+            }
+
+            public string DoWork()
+            {
+                return this.dependency.GetValue();
+            }
+        }
+
+        public interface IDependency
+        {
+            string GetValue();
+        }
+>>>>>>> 9d733a31764c956c35259f32fa58e3a3d6cdd979
 
     }
 }
