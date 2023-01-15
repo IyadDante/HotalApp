@@ -7,18 +7,10 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-// After Finishing setting up SqlDataAccess and ISqlDataAccess, we now are going to create a methode to GET the available rooms
-
 namespace HotalAppLibrary.Data
 {
     public class SqlData : IDatabaseData
     {
-        // To Get the Available Room Types we do the following:
-        // 1- We create the model
-        // 2- We create the stored procedure
-        // 3- We create a mothod with the same paramertes of our stored procedure.
-        // 4- We use ISqlDataAccess interface to get to SqlDataAccess 
-
         private readonly ISqlDataAccess _db;
         private const string connectionStringName = "SqlDb";
 
@@ -27,10 +19,11 @@ namespace HotalAppLibrary.Data
             _db = db;
         }
 
-        // This is to talk to the database
         public List<RoomTypesModel> GetAvailableRoomTypes(DateTime startDate, DateTime endDate)
         {
-            return _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypes_GetAvailableRoomTypes]",
+            List<RoomTypesModel> output = new();
+
+            return output =_db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypes_GetAvailableRoomTypes]",
                                                          new { startDate, endDate },
                                                          connectionStringName,
                                                          true
@@ -40,13 +33,13 @@ namespace HotalAppLibrary.Data
         public int RegisterGuset(string FirstName, string LastName)
         {
             int NewUserId = 0;
+
             NewUserId = _db.LoadData<int, dynamic>("[dbo].[spGuest_InsertNewGuest]",
                                        new { FirstName, LastName },
                                        connectionStringName,
                                        true).First();
             return NewUserId;
         }
-
 
         public void CkeckInGuest(int bookingId)
         {
@@ -56,7 +49,6 @@ namespace HotalAppLibrary.Data
                           true);
         }
 
-        // This is to talk to the database
         public void GetAvailableRoomIds(DateTime startDate, DateTime endDate)
         {
 
@@ -69,13 +61,15 @@ namespace HotalAppLibrary.Data
 
         public RoomTypesModel GetRoomTypesDetailById(int roomTypeId)
         {
-            return _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypeDetails_GetById]",
+            RoomTypesModel model= new RoomTypesModel();
+
+             model = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypeDetails_GetById]",
                                                           new { RoomTypeId = roomTypeId },
                                                           connectionStringName,
                                                           true).First();
+            return model;
         }
 
-        // To book a guest to an ID we first have to call RegisterNewGuset then GetAvailableRoomIds
         public int BookGusetToRoom(int roomId, int guestId, DateTime startDate, DateTime endDate, decimal TotalRoomPrice)
         {
             var aCheckIn = false;

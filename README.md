@@ -19,7 +19,7 @@ Also, I will keep adding more features to this project with time.
 ##Roadmap 
 -----------------------
 v. 0.0.1 - App MVP reached.
-v. 0.0.2 - Adding Unit Testing cases for the.
+v. 0.0.2 - Adding Unit Testing cases for HotelAppLibrary.
 v. 0.0.3 - Adding SyncFousion reporting.
 v. 0.0.4 - Creating a Login system ( Authentication - Logging in locally or with OAuth).
 v. 0.0.5 - Creating an email notification system.
