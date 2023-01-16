@@ -40,6 +40,28 @@ namespace HotalAppLibrary.Databases
 
         }
 
+        ////  **********************        Yevhen Answer       **********************  ////
+
+        //public List<T> LoadData<T>(string sqlStatement,
+        //                      object parameter,
+        //                      string connectionStringName,
+        //                      bool isStoredProcedure = false)
+        //{
+        //    string? connectionString = _config.GetConnectionString(connectionStringName);
+        //    CommandType commandType = CommandType.Text;
+
+        //    if (isStoredProcedure == true)
+        //    {
+        //        commandType = CommandType.StoredProcedure;
+        //    }
+
+        //    using (IDbConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        List<T> rows = connection.Query<T>(sqlStatement, parameter, commandType: commandType).ToList();
+        //        return rows;
+        //    }
+        //}
+
         public void SaveData<T>(string sqlStatement,
                                       T parameter,
                                       string connectionStringName,
