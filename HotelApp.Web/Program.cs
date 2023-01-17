@@ -1,4 +1,4 @@
-using HotalAppLibrary.Data;
+﻿using HotalAppLibrary.Data;
 using HotalAppLibrary.Databases;
 
 var builder = WebApplication.CreateBuilder(args);
