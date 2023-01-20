@@ -58,9 +58,7 @@ namespace HotalAppLibrary.Data
 
         public RoomTypesModel GetRoomTypesDetailById(int roomTypeId)
         {
-            RoomTypesModel model = new RoomTypesModel();
-
-            model = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypeDetails_GetById]",
+            RoomTypesModel model = _db.LoadData1<RoomTypesModel>("[dbo].[spRoomTypeDetails_GetById]",
                                                          new { RoomTypeId = roomTypeId },
                                                          connectionStringName,
                                                          true).First();

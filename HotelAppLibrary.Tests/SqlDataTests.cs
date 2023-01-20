@@ -107,33 +107,6 @@ namespace HotelAppLibrary.Tests
             }
         }
 
-        [Fact]
-        public void GetRoomTypesDetailById_ShouldReturnRoomDetails()
-        {
-            var roomTypeId = 2;
-            var sqlStatment = "[dbo].[spRoomTypeDetails_GetById]";
-            var returnedRoom = GetAvailableRoomTypes()[1];
-            List<RoomTypesModel>? roomList = new List<RoomTypesModel>();
-
-            using (var mock = AutoMock.GetLoose())
-            {
-                // Arrange
-                mock.Mock<ISqlDataAccess>()
-                    .Setup(x => x.LoadData<RoomTypesModel, dynamic>(sqlStatment, roomTypeId, connectionStringName, true))
-                    .Returns(roomList);
-
-                var SqlDataClass = mock.Create<SqlData>();
-
-                // Act
-                var actual = SqlDataClass.GetRoomTypesDetailById(roomTypeId);
-
-                // Assert
-                Assert.Equal(returnedRoom, actual);
-            }
-
-        }
-
-        ////Yevhen Answer
         //[Fact]
         //public void GetRoomTypesDetailById_ShouldReturnRoomDetails()
         //{
@@ -144,25 +117,50 @@ namespace HotelAppLibrary.Tests
 
         //    using (var mock = AutoMock.GetLoose())
         //    {
-        //        object parameter = null;
+        //        // Arrange
         //        mock.Mock<ISqlDataAccess>()
-        //            .Setup(x => x.LoadData<RoomTypesModel>(sqlStatment, It.IsAny<object>(), connectionStringName, true))
-        //            .Callback<string, object, string, bool>((_, param1, _, _) => parameter = param1)
+        //            .Setup(x => x.LoadData<RoomTypesModel, dynamic>(sqlStatment, roomTypeId, connectionStringName, true))
         //            .Returns(roomList);
 
         //        var SqlDataClass = mock.Create<SqlData>();
 
-        //        // Arrange 
-        //        var expected = returnedRoom;
-
-        //        //Act 
+        //        // Act
         //        var actual = SqlDataClass.GetRoomTypesDetailById(roomTypeId);
 
         //        // Assert
-        //        Assert.Equivalent(new { RoomTypeId = roomTypeId }, parameter);
-        //        Assert.NotNull(actual);
-        //        Assert.Equal(actual, expected);
+        //        Assert.Equal(returnedRoom, actual);
         //    }
+
         //}
+
+        //Yevhen Answer
+        [Fact]
+        public void GetRoomTypesDetailById_ShouldReturnRoomDetails()
+        {
+            // Arrange
+            var roomTypeId = 2;
+            var sqlStatement = "[dbo].[spRoomTypeDetails_GetById]";
+            var availableRoomTypes = GetAvailableRoomTypes();
+
+            using (var mock = AutoMock.GetLoose())
+            {
+                object? parameter = null;
+                mock.Mock<ISqlDataAccess>()
+                    .Setup(x => x.LoadData1<RoomTypesModel>(sqlStatement, It.IsAny<object>(), connectionStringName, true))
+                    .Callback<string, object, string, bool>((_, param1, _, _) => parameter = param1)
+                    .Returns(availableRoomTypes);
+
+                var sqlDataClass = mock.Create<SqlData>();
+
+                var expected = availableRoomTypes[0];
+
+                // Act 
+                var actual = sqlDataClass.GetRoomTypesDetailById(roomTypeId);
+
+                // Assert
+                Assert.Equivalent(new { RoomTypeId = roomTypeId }, parameter);
+                Assert.Equal(actual, expected);
+            }
+        }
     }
 }
