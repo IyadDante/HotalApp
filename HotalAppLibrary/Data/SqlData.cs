@@ -1,11 +1,6 @@
-﻿using HotalAppLibrary.Databases;
+﻿using HotalAppLibrary.Criteria;
+using HotalAppLibrary.Databases;
 using HotalAppLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotalAppLibrary.Data
 {
@@ -24,8 +19,8 @@ namespace HotalAppLibrary.Data
         {
             List<RoomTypesModel> output = new();
 
-            output =_db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypes_GetAvailableRoomTypes]",
-                                                         new { startDate, endDate },
+            output = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypes_GetAvailableRoomTypes]",
+                                                         new AvailableRoomTypesCriteria { StartDate = startDate, EndDate = endDate },
                                                          connectionStringName,
                                                          true
                                                          );
@@ -63,12 +58,10 @@ namespace HotalAppLibrary.Data
 
         public RoomTypesModel GetRoomTypesDetailById(int roomTypeId)
         {
-            RoomTypesModel model= new RoomTypesModel();
-
-             model = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRoomTypeDetails_GetById]",
-                                                          new { RoomTypeId = roomTypeId },
-                                                          connectionStringName,
-                                                          true).First();
+            RoomTypesModel model = _db.LoadData1<RoomTypesModel>("[dbo].[spRoomTypeDetails_GetById]",
+                                                         new { RoomTypeId = roomTypeId },
+                                                         connectionStringName,
+                                                         true).First();
             return model;
         }
 
@@ -103,13 +96,13 @@ namespace HotalAppLibrary.Data
             return searchResult;
         }
 
-        public int GetAvailableRoomsIdByRoomTypeId(DateTime startDate, DateTime endDate, int roomTypeID) 
+        public int GetAvailableRoomsIdByRoomTypeId(DateTime startDate, DateTime endDate, int roomTypeID)
         {
             RoomTypesModel AvailableRoomsId = new RoomTypesModel();
 
-            AvailableRoomsId = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRooms_GetAvailableRoomsByTypeId]", 
-                                                        new { startDate, endDate, roomTypeID }, 
-                                                        connectionStringName, 
+            AvailableRoomsId = _db.LoadData<RoomTypesModel, dynamic>("[dbo].[spRooms_GetAvailableRoomsByTypeId]",
+                                                        new { startDate, endDate, roomTypeID },
+                                                        connectionStringName,
                                                         true).First();
             return AvailableRoomsId.Id;
         }
@@ -143,6 +136,7 @@ namespace HotalAppLibrary.Data
 
             return gusetsList;
         }
+
 
 
         ////  **********************        Yevhen Answer       **********************  ////
