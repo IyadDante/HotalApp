@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace HotalAppLibrary.Databases
-{   
+{
     public class SqlDataAccess : ISqlDataAccess
     {
         private readonly IConfiguration _config;
@@ -42,25 +37,23 @@ namespace HotalAppLibrary.Databases
 
         ////  **********************        Yevhen Answer       **********************  ////
 
-        //public List<T> LoadData<T>(string sqlStatement,
-        //                      object parameter,
-        //                      string connectionStringName,
-        //                      bool isStoredProcedure = false)
-        //{
-        //    string? connectionString = _config.GetConnectionString(connectionStringName);
-        //    CommandType commandType = CommandType.Text;
+        public List<T> LoadData1<T>(string sqlStatement,
+                                    object parameter,
+                                    string connectionStringName,
+                                    bool isStoredProcedure = false)
+        {
+            string? connectionString = _config.GetConnectionString(connectionStringName);
 
-        //    if (isStoredProcedure == true)
-        //    {
-        //        commandType = CommandType.StoredProcedure;
-        //    }
+            CommandType commandType = isStoredProcedure
+                ? CommandType.StoredProcedure
+                : CommandType.Text;
 
-        //    using (IDbConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        List<T> rows = connection.Query<T>(sqlStatement, parameter, commandType: commandType).ToList();
-        //        return rows;
-        //    }
-        //}
+            using IDbConnection connection = new SqlConnection(connectionString);
+
+            List<T> rows = connection.Query<T>(sqlStatement, parameter, commandType: commandType)
+                                     .ToList();
+            return rows;
+        }
 
         public void SaveData<T>(string sqlStatement,
                                       T parameter,
