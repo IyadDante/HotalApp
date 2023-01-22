@@ -134,7 +134,16 @@ namespace HotalAppLibrary.Data
 
             return totalRoomPrice;
         }
-        
+
+        public List<GusetsModel> GetGuestsList()
+        {
+            List<GusetsModel> gusetsList = new ();
+
+            gusetsList = _db.SelectData<GusetsModel, dynamic>("[dbo].[spRooms_GetAvailableRoomsByTypeId]", connectionStringName);
+
+            return gusetsList;
+        }
+
 
         ////  **********************        Yevhen Answer       **********************  ////
 

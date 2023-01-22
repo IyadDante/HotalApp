@@ -40,6 +40,20 @@ namespace HotalAppLibrary.Databases
 
         }
 
+        public List<T> SelectData<T, U>(string sqlStatement,
+                              string connectionStringName)
+        {
+            string? connectionString = _config.GetConnectionString(connectionStringName);
+            CommandType commandType = CommandType.Text;
+
+            using (IDbConnection connection = new SqlConnection(connectionString))
+            {
+                List<T> rows = connection.Query<T>(sqlStatement, commandType: commandType).ToList();
+                return rows;
+            }
+
+        }
+
         ////  **********************        Yevhen Answer       **********************  ////
 
         //public List<T> LoadData<T>(string sqlStatement,

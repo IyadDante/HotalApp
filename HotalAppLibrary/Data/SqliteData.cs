@@ -34,6 +34,11 @@ namespace HotalAppLibrary.Data
             throw new NotImplementedException();
         }
 
+        public List<GusetsModel> GetGuestsList()
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal GetRoomPrice(int roomTypeId, DateTime startDate, DateTime endDate)
         {
             throw new NotImplementedException();
@@ -53,5 +58,8 @@ namespace HotalAppLibrary.Data
         {
             throw new NotImplementedException();
         }
+    
+
+
     }
 }

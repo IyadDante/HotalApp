@@ -13,7 +13,6 @@ namespace HotalAppLibrary.Data
         int RegisterGuset(string FirstName, string LastName);
         List<BookingModel> SearchForBooking(DateTime startDate, DateTime endDate, string firstName, string lastName);
         decimal GetRoomPrice(int roomTypeId, DateTime startDate, DateTime endDate);
-
-
+        List<GusetsModel> GetGuestsList();
     }
 }
