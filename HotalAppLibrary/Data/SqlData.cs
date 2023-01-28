@@ -38,14 +38,6 @@ namespace HotalAppLibrary.Data
             return NewUserId;
         }
 
-        public void CkeckInGuest(int bookingId)
-        {
-            _db.SaveData("[dbo].[spBookings_CheckIn]",
-                          new { Id = bookingId },
-                          connectionStringName,
-                          true);
-        }
-
         public void GetAvailableRoomIds(DateTime startDate, DateTime endDate)
         {
 
@@ -170,6 +162,35 @@ namespace HotalAppLibrary.Data
 
             return bookingList;
         }
+
+        public void CkeckInGuest(int bookingId)
+        {
+            _db.SaveData("[dbo].[spBookings_CheckIn]",
+                          new { Id = bookingId },
+                          connectionStringName,
+                          true);
+        }
+
+
+        public void DeleteGuestById(int GuestId)
+        {
+
+             _db.SaveData("[dbo].[spGuests_DeleteGuestById]",
+                                                        new { GuestId },
+                                                        connectionStringName,
+                                                        true);
+        }
+
+        public void DeleteBookingByID(int BookingId)
+        {
+
+            _db.SaveData("[dbo].[spBooking_DeleteBookingByID]",
+                                                       new { BookingId },
+                                                       connectionStringName,
+                                                       true);
+        }
+
+
 
 
 

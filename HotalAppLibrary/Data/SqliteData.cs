@@ -19,6 +19,16 @@ namespace HotalAppLibrary.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteBookingByID(int BookingId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteGuestById(int BookingId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetAvailableRoomIds(DateTime startDate, DateTime endDate)
         {
             throw new NotImplementedException();

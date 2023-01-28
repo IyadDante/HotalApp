@@ -64,6 +64,11 @@
                         Field="@nameof(BookingModel.EndDate)"      
                         Format="d"         
             ></GridColumn>
+            <GridColumn HeaderText="Room Type Id"
+                    Field="@nameof(BookingModel.RoomTypeId)"
+                    EditType="EditType.DropDownEdit"
+                    AllowEditing="false"
+                    AllowAdding="true"></GridColumn>
             <GridColumn HeaderText="Room Type Id" 
                         Field="@nameof(BookingModel.RoomTypeId)"
                         AllowEditing="false"

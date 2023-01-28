@@ -80,6 +80,8 @@
     <Build Include="dbo\Stored Procedures\spGuest_ListGuest.sql" />
     <Build Include="dbo\Stored Procedures\spBooking_UpdateBooking.sql" />
     <Build Include="dbo\Stored Procedures\spBooking_GetBookingRoomIDandGuestIDbyBookingID.sql" />
+    <Build Include="dbo\Stored Procedures\spBooking_DeleteBookingByID.sql" />
+    <Build Include="dbo\Stored Procedures\spGuests_DeleteGuestById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HotalAppDB.refactorlog" />

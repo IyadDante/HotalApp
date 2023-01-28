@@ -17,5 +17,7 @@ namespace HotalAppLibrary.Data
         List<BookingModel> GetBookingsDetailsList();
         List<BookingModel> UpdateBooking(int BookingId, int RoomId, int GuestId, string FirstName, string LastName, DateTime startDate, DateTime endDate, bool CheckIn, decimal TotalCost);
         List<BookingModel> GetBookingRoomIDandGuestIDbyBookingID(int BookingId);
+        void DeleteGuestById(int BookingId);
+        void DeleteBookingByID(int BookingId);
     }
 }

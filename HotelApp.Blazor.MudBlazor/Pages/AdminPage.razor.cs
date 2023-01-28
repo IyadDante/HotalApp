@@ -42,15 +42,6 @@ namespace HotelApp.Blazor.MudBlazor.Pages
             await BookingGrid.AutoFitColumns();
         }
 
-        /*
-            NewUserID = _db.RegisterGuset(FirstName, LastName);
-            NewRoomID = _db.GetAvailableRoomsIdByRoomTypeId(pStartDate, pEndDate, pRoomTypeId);
-            TotalRoomPrice = _db.GetRoomPrice(NewRoomID, pStartDate, pEndDate);
-            BookingId = _db.BookGusetToRoom(NewRoomID, NewUserID, pStartDate, pEndDate, TotalRoomPrice);
-
-            return RedirectToPage("/Index");
-         */
-
         public void ActionBegin(ActionEventArgs<BookingModel> args)
         {
             if (args.RequestType == Syncfusion.Blazor.Grids.Action.BeginEdit)
@@ -67,7 +58,13 @@ namespace HotelApp.Blazor.MudBlazor.Pages
             else if (args.RequestType == Syncfusion.Blazor.Grids.Action.Delete)
             {
                 // Triggers before delete operation starts
-                var value = args.Data.Id;
+                var resultValue = _db.GetBookingRoomIDandGuestIDbyBookingID(args.Data.Id).First();
+                var delectedGuestId = resultValue.GuestId;
+
+                var deletedBookingId = args.Data.Id;
+                _db.DeleteGuestById(delectedGuestId);
+                _db.DeleteBookingByID(deletedBookingId);
+                Refresh();
             }
         }
 
