@@ -34,6 +34,16 @@ namespace HotalAppLibrary.Data
             throw new NotImplementedException();
         }
 
+        public List<BookingModel> GetBookingRoomIDandGuestIDbyBookingID(int BookingId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BookingModel> GetBookingsDetailsList()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<GusetsModel> GetGuestsList()
         {
             throw new NotImplementedException();
@@ -58,8 +68,10 @@ namespace HotalAppLibrary.Data
         {
             throw new NotImplementedException();
         }
-    
 
-
+        public List<BookingModel> UpdateBooking(int BookingId, int RoomId, int GuestId, string FirstName, string LastName, DateTime startDate, DateTime endDate, bool CheckIn, decimal TotalCost)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

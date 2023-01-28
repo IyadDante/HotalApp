@@ -76,6 +76,10 @@
     <Build Include="dbo\Stored Procedures\spRooms_GetAvailableRoomsByTypeId.sql" />
     <Build Include="dbo\Stored Procedures\spRoomType_GetPriceByRoomTypeId.sql" />
     <Build Include="dbo\Stored Procedures\spBooking_BookGuestToRoom.sql" />
+    <Build Include="dbo\Stored Procedures\spBooking_ListBooking.sql" />
+    <Build Include="dbo\Stored Procedures\spGuest_ListGuest.sql" />
+    <Build Include="dbo\Stored Procedures\spBooking_UpdateBooking.sql" />
+    <Build Include="dbo\Stored Procedures\spBooking_GetBookingRoomIDandGuestIDbyBookingID.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HotalAppDB.refactorlog" />
@@ -85,5 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish Profiles\HotalAppDB.publish.xml" />
+    <None Include="..\HotelApp.Blazor.MudBlazor\Pages\DialogSettings.razor">
+      <Link>DialogSettings.razor</Link>
+    </None>
   </ItemGroup>
 </Project>

@@ -4,11 +4,14 @@
 	  <TargetFramework>net7.0</TargetFramework>
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
+	  <UserSecretsId>67df9537-3848-44c3-b42b-63cc84d3a04b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="6.1.7" />
+    <PackageReference Include="Syncfusion.Blazor.Core" Version="20.4.0.43" />
     <PackageReference Include="Syncfusion.Blazor.Grid" Version="20.4.0.43" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.4.0.43" />
     <PackageReference Include="Syncfusion.Blazor.TreeGrid" Version="20.4.0.43" />
   </ItemGroup>
 

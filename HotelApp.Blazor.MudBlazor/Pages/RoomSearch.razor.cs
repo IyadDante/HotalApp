@@ -11,12 +11,12 @@ namespace HotelApp.Blazor.MudBlazor.Pages
         public string EndDate { get; set; }
         public string statusVisibility { get; set; } = "invisible";
 
-
         protected override async Task OnInitializedAsync()
         {
             startDate = DateTime.Today;
             endDate = DateTime.Today.AddDays(1);
         }
+
         void searchOnClick()
         {
             statusVisibility = "visible";

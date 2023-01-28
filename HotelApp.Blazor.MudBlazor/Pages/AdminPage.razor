@@ -1,0 +1,125 @@
+﻿@page "/AdminPage"
+@using HotalAppLibrary.Data;
+@using HotalAppLibrary.Models;
+@using Syncfusion.Blazor.Grids
+
+@inject IDatabaseData _db
+
+<MudGrid>
+    <MudItem xs="12">
+        <MudText Align="Align.Left" Typo="Typo.h6">Booking List Details</MudText>
+        <br />
+    </MudItem>
+</MudGrid>
+
+<SfGrid @ref="BookingGrid" 
+        DataSource="bookingList"
+        AllowPaging="true" 
+        Toolbar="@toolBar" 
+        AllowFiltering="true" 
+        AllowSorting="true" 
+        AllowResizing="true"
+    ><GridEditSettings AllowAdding ="true" 
+                      AllowEditing="true" 
+                      AllowDeleting="true"
+                      Mode="EditMode.Dialog"
+    ></GridEditSettings>
+
+        <GridEvents DataBound="DataboundHandler"
+                    OnActionBegin="ActionBegin"
+                    OnActionComplete="ActionComplete"
+                    TValue="BookingModel"
+        ></GridEvents>
+
+            <GridPageSettings PageSize="10">
+            </GridPageSettings>
+
+                <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu">
+                </GridFilterSettings>
+
+        <GridColumns>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="Booking ID"   Field="@nameof(BookingModel.Id)"           
+                        IsPrimaryKey="true"
+                        AllowAdding ="false"
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })"  
+                        HeaderText="Room Number"  Field="@nameof(BookingModel.RoomNumber)"                      
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="Frist Name"   
+                        Field="@nameof(BookingModel.FirstName)"                       
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="Last Name"    
+                        Field="@nameof(BookingModel.LastName)"                        
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="Start Date"   
+                        Field="@nameof(BookingModel.StartDate)"    
+                        Format="d"         
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="End Date"     
+                        Field="@nameof(BookingModel.EndDate)"      
+                        Format="d"         
+            ></GridColumn>
+            <GridColumn HeaderText="Room Type Id" 
+                        Field="@nameof(BookingModel.RoomTypeId)"
+                        AllowEditing="false"
+                        AllowAdding="true"
+            ></GridColumn>
+            <GridColumn HeaderText="Room Type"    
+                        Field="@nameof(BookingModel.Title)"
+                        AllowEditing="false"
+                        AllowAdding="false"
+            ></GridColumn>
+            <GridColumn HeaderText="Description"  
+                        Field="@nameof(BookingModel.Description)"
+                        Width="300px"      
+                        AllowEditing="false"
+                        AllowAdding="false"
+            ></GridColumn>
+            <GridColumn HeaderText="Price"        
+                        Field="@nameof(BookingModel.Price)"        
+                        Format="c"         
+                        AllowEditing="false"
+                        AllowAdding="false"
+            ></GridColumn>
+            <GridColumn HeaderText="Total Cost"   
+                        Field="@nameof(BookingModel.TotalCost)"    
+                        Format="c"
+                        AllowEditing="false"
+                        AllowAdding="false"
+            ></GridColumn>
+            <GridColumn ValidationRules="@(new ValidationRules{ Required= true })" 
+                        HeaderText="Check In"     
+                        Field="@nameof(BookingModel.CheckIn)"                         
+            ></GridColumn>
+        </GridColumns>
+</SfGrid>
+
+<br />
+<br />
+
+<MudGrid>
+    <MudItem xs="12">
+        <MudText Align="Align.Left" Typo="Typo.h4"> Admin Page </MudText>
+        <MudText Align="Align.Left" Typo="Typo.h6"> List Of Guests </MudText>
+        <br />
+    </MudItem>
+</MudGrid>
+
+<div style="max-width:600px">
+    <SfGrid DataSource="guestsList" AllowPaging="true">
+        <GridPageSettings PageSize="5"></GridPageSettings>
+
+    </SfGrid>
+</div>
+
+
+
+
+
+
+

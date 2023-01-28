@@ -62,6 +62,7 @@ namespace HotelApp.Web.Pages
             NewRoomID = _db.GetAvailableRoomsIdByRoomTypeId(pStartDate, pEndDate, pRoomTypeId);
             TotalRoomPrice = _db.GetRoomPrice(NewRoomID, pStartDate, pEndDate);
             BookingId = _db.BookGusetToRoom(NewRoomID, NewUserID, pStartDate, pEndDate, TotalRoomPrice);
+
             return RedirectToPage("/Index");
         }
 

@@ -14,5 +14,8 @@ namespace HotalAppLibrary.Data
         List<BookingModel> SearchForBooking(DateTime startDate, DateTime endDate, string firstName, string lastName);
         decimal GetRoomPrice(int roomTypeId, DateTime startDate, DateTime endDate);
         List<GusetsModel> GetGuestsList();
+        List<BookingModel> GetBookingsDetailsList();
+        List<BookingModel> UpdateBooking(int BookingId, int RoomId, int GuestId, string FirstName, string LastName, DateTime startDate, DateTime endDate, bool CheckIn, decimal TotalCost);
+        List<BookingModel> GetBookingRoomIDandGuestIDbyBookingID(int BookingId);
     }
 }

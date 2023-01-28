@@ -132,10 +132,45 @@ namespace HotalAppLibrary.Data
         {
             List<GusetsModel> gusetsList = new ();
 
-            gusetsList = _db.SelectData<GusetsModel, dynamic>("[dbo].[spRooms_GetAvailableRoomsByTypeId]", connectionStringName);
+            gusetsList = _db.SelectData<GusetsModel, dynamic>("[dbo].[spGuest_ListGuest]", connectionStringName);
 
             return gusetsList;
         }
+
+        public List<BookingModel> GetBookingsDetailsList()
+        {
+            List<BookingModel> gusetBooking = new();
+
+            gusetBooking = _db.SelectData<BookingModel, dynamic>("[dbo].[spBooking_ListBooking]", connectionStringName);
+
+            return gusetBooking;
+        }
+
+
+        public List<BookingModel> UpdateBooking( int BookingId, int RoomId, int GuestId, string FirstName, string LastName, DateTime startDate, DateTime endDate, bool CheckIn, decimal TotalCost)
+        {
+            List<BookingModel> bookingList = new();
+
+            bookingList = _db.LoadData<BookingModel, dynamic>("[dbo].[spBooking_UpdateBooking]",
+                                                        new { BookingId, RoomId, GuestId, FirstName, LastName, startDate, endDate, CheckIn, TotalCost },
+                                                        connectionStringName,
+                                                        true);
+
+            return bookingList;
+        }
+
+        public List<BookingModel> GetBookingRoomIDandGuestIDbyBookingID(int BookingId)
+        {
+            List<BookingModel> bookingList = new();
+
+            bookingList = _db.LoadData<BookingModel, dynamic>("[dbo].[spBooking_GetBookingRoomIDandGuestIDbyBookingID]",
+                                                        new { BookingId },
+                                                        connectionStringName,
+                                                        true);
+
+            return bookingList;
+        }
+
 
 
 
